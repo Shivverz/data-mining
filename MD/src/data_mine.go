@@ -230,6 +230,7 @@ func start_server() {
 }
 
 func run_server() {
+    connect_to_mongo()
 	WG.Add(1)
 	start_server()
 	WG.Wait()
