@@ -76,6 +76,14 @@ func parse_response_body(body []byte, collection_name string) (string, error) {
 		return "", errors.New("Bad request detected.")
 	}
 
+    data, ok := response_body["data"].([]interface{})
+    if !ok {
+        log.Println("Data key not found or has unexpected type!")
+        return "", errors.New("Data key not found or has unexpected type!")
+    }
+
+    save_to_database(data, collection_name)
+
 	pagination, ok := response_body["pagination"].(map[string]interface{})
 	if !ok {
 		log.Println("Pagination key not found or has unexpected type!")
@@ -103,15 +111,6 @@ func parse_response_body(body []byte, collection_name string) (string, error) {
 	if remaining_tokens == 0.0 || next_request_url == "null" {
 		return "", errors.New("No more requests are available")
 	}
-
-	data, ok := response_body["data"].([]interface{})
-	if !ok {
-		log.Println("Data key not found or has unexpected type!")
-		return "", errors.New("Data key not found or has unexpected type!")
-	}
-
-	// fmt.Println(data)
-	save_to_database(data, collection_name)
 
 	return next_request_url, nil
 }
