@@ -3,9 +3,12 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
+	"os"
+
+	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"log"
 )
 
 var client *mongo.Client
@@ -14,10 +17,20 @@ var database *mongo.Database
 const DB_NAME = "sportmonks"
 
 func connect_to_mongo() {
-	MONGO_URI := "mongodb://localhost:27017"
+    var err error
+
+    err = godotenv.Load()
+
+    if err != nil {
+        log.Fatal("Error loading .env file")
+    }
+
+    mongoUser := os.Getenv("MONGO_USER")
+    mongoPassword := os.Getenv("MONGO_PASSWORD")
+
+	MONGO_URI := fmt.Sprintf("mongodb+srv://%s:%s@datamining.ywf7foj.mongodb.net/?retryWrites=true&w=majority&appName=DataMining", mongoUser, mongoPassword)
 	clientOption := options.Client().ApplyURI(MONGO_URI)
 
-    var err error
     client, err = mongo.Connect(context.Background(), clientOption)
 	if err != nil {
 		log.Fatal(err)
