@@ -56,16 +56,28 @@ def handle_goals_conceded(name, values):
     away = values.get('away', [])
 
     if all != []:
-        sentence = f"For a combined number of {all.get('count')} games, home and away, {name} has conceded an average of {all.get('average')} goals, in which the first tends to happend around the {all.get('first')} minute mark."
-        statistic_sentences.append(sentence)
+        if all.get('first') != None:
+            sentence = f"For a combined number of {all.get('count')} games, home and away, {name} has conceded an average of {all.get('average')} goals, in which the first tends to happend around the {all.get('first')} minute mark."
+            statistic_sentences.append(sentence)
+        else:
+            sentence = f"For a combined number of {all.get('count')} games, home and away, {name} has conceded an average of {all.get('average')} goals."
+            statistic_sentences.append(sentence)
 
     if home != []:
-        sentence = f"In {home.get('count')} home games, {name} has conceded an average of {home.get('average')} goals, in which the first tends to occurr around the {home.get('first')} minute mark. This values equate to the fact that roughly {home.get('percentage')}% of {name}'s total number of conceded goals take place in home games."
-        statistic_sentences.append(sentence)
+        if home.get('first') != None:
+            sentence = f"In {home.get('count')} home games, {name} has conceded an average of {home.get('average')} goals, in which the first tends to occurr around the {home.get('first')} minute mark. This values equate to the fact that roughly {home.get('percentage')}% of {name}'s total number of conceded goals take place in home games."
+            statistic_sentences.append(sentence)
+        else:
+            sentence = f"In {home.get('count')} home games, {name} has conceded an average of {home.get('average')} goals. This values equate to the fact that roughly {home.get('percentage')}% of {name}'s total number of conceded goals take place in home games."
+            statistic_sentences.append(sentence)
 
     if away != []:
-        sentence = f"In {away.get('count')} away games, {name} has conceded an average of {away.get('average')} goals, in which the first tends to occurr around the {away.get('first')} minute mark. This values equate to the fact that roughly {away.get('percentage')}% of {name}'s total number of conceded goals take place in away games."
-        statistic_sentences.append(sentence)
+        if away.get('first') != None:
+            sentence = f"In {away.get('count')} away games, {name} has conceded an average of {away.get('average')} goals, in which the first tends to occurr around the {away.get('first')} minute mark. This values equate to the fact that roughly {away.get('percentage')}% of {name}'s total number of conceded goals take place in away games."
+            statistic_sentences.append(sentence)
+        else:
+            sentence = f"In {away.get('count')} away games, {name} has conceded an average of {away.get('average')} goals. This values equate to the fact that roughly {away.get('percentage')}% of {name}'s total number of conceded goals take place in away games."
+            statistic_sentences.append(sentence)
 
     return statistic_sentences
 
@@ -326,16 +338,28 @@ def handle_goals(name, values):
     away = values.get('away', [])
 
     if all != []:
-        sentence = f"For a combined number of {all.get('count')} games, home and away, {name} has managed to score an average of {all.get('average')} goals, in which the first goal tends to happen at the {values.get('first')} minute mark."
-        statistic_sentences.append(sentence)
+        if all.get('first') != None:
+            sentence = f"For a combined number of {all.get('count')} games, home and away, {name} has managed to score an average of {all.get('average')} goals, in which the first goal tends to happen at the {all.get('first')} minute mark."
+            statistic_sentences.append(sentence)
+        else:
+            sentence = f"For a combined number of {all.get('count')} games, home and away, {name} has managed to score an average of {all.get('average')} goals."
+            statistic_sentences.append(sentence)
 
     if home != []:
-        sentence = f"In {home.get('count')} home games, {name} has scored an average of {home.get('average')} goals, in which the first tends to occurr around the {home.get('first')} minute mark. This values equate to the fact that roughly {home.get('percentage')}% of {name}'s total number of scored goals take place in home games."
-        statistic_sentences.append(sentence)
+        if home.get('first') != None:
+            sentence = f"In {home.get('count')} home games, {name} has scored an average of {home.get('average')} goals, in which the first tends to occurr around the {home.get('first')} minute mark. This values equate to the fact that roughly {home.get('percentage')}% of {name}'s total number of scored goals take place in home games."
+            statistic_sentences.append(sentence)
+        else:
+            sentence = f"In {home.get('count')} home games, {name} has scored an average of {home.get('average')} goals. This values equate to the fact that roughly {home.get('percentage')}% of {name}'s total number of scored goals take place in home games."
+            statistic_sentences.append(sentence)
 
     if away != []:
-        sentence = f"In {away.get('count')} away games, {name} has conceded an average of {away.get('average')} goals, in which the first tends to occurr around the {away.get('first')} minute mark. This values equate to the fact that roughly {away.get('percentage')}% of {name}'s total number of scored goals take place in away games."
-        statistic_sentences.append(sentence)
+        if away.get('first') != None:
+            sentence = f"In {away.get('count')} away games, {name} has conceded an average of {away.get('average')} goals, in which the first tends to occurr around the {away.get('first')} minute mark. This values equate to the fact that roughly {away.get('percentage')}% of {name}'s total number of scored goals take place in away games."
+            statistic_sentences.append(sentence)
+        else:
+            sentence = f"In {away.get('count')} away games, {name} has conceded an average of {away.get('average')} goals. This values equate to the fact that roughly {away.get('percentage')}% of {name}'s total number of scored goals take place in away games."
+            statistic_sentences.append(sentence)
 
     return statistic_sentences
 
@@ -578,8 +602,12 @@ def handle_rivals(team_name, rivals):
         rival_name = rival.get('name')
         founded = rival.get('founded')
 
-        sentence = f"{rival_name}, a team founded in {founded}, has cultivated a rivalry with {team_name} since both teams tend to fight over the same league objectives in the portuguese championship."
-        teams_information[team_name].append(sentence)
+        if founded != None:
+            sentence = f"{rival_name}, a team founded in {founded}, has cultivated a rivalry with {team_name} since both teams tend to fight over the same league objectives in the portuguese championship."
+            teams_information[team_name].append(sentence)
+        else:
+            sentence = f"{rival_name} has cultivated a rivalry with {team_name} since both teams tend to fight over the same league objectives in the portuguese championship."
+            teams_information[team_name].append(sentence)
         
 
 
@@ -606,7 +634,6 @@ def handle_players(team_name, players):
         player_name = player_info.get('name')
         height = player_info.get('height')
         weight = player_info.get('weight')
-        date_of_birth = player_info.get('date_of_birth')
 
         position = player.get('detailedposition')
 
@@ -615,12 +642,55 @@ def handle_players(team_name, players):
 
         if position != None:
             position_name = str(position.get('name')).lower()
-            sentence = f"{player_name}, {height} tall and weighting {weight} and born in {date_of_birth}, is a {position_name} for {team_name} with the {jersey_number} jersey number."
-            teams_information[team_name].append(sentence)
+
+            if height != None and weight != None:
+                if jersey_number != None:
+                    sentence = f"{player_name}, {height} tall and weighting {weight}, is a {position_name} for {team_name} with the {jersey_number} jersey number."
+                    teams_information[team_name].append(sentence)
+                else:
+                    sentence = f"{player_name}, {height} tall and weighting {weight}, is a {position_name} for {team_name}."
+                    teams_information[team_name].append(sentence)
+
+            elif height != None:
+                if jersey_number != None:
+                    sentence = f"{player_name}, {height} tall, is a {position_name} for {team_name} with the {jersey_number} jersey number."
+                    teams_information[team_name].append(sentence)
+                else:
+                    sentence = f"{player_name}, {height} tall, is a {position_name} for {team_name}."
+                    teams_information[team_name].append(sentence)
+
+            elif weight != None:
+                if jersey_number != None:
+                    sentence = f"{player_name}, weighting {weight}, is a {position_name} for {team_name} with the {jersey_number} jersey number."
+                    teams_information[team_name].append(sentence)
+                else:
+                    sentence = f"{player_name}, weighting {weight}, is a {position_name} for {team_name}."
+                    teams_information[team_name].append(sentence)
 
         else:
-            sentence = f"{player_name}, {height} tall and weighting {weight} and born in {date_of_birth}, plays for {team_name} with the {jersey_number} jersey number."
-            teams_information[team_name].append(sentence)
+            if height != None and weight != None:
+                if jersey_number != None:
+                    sentence = f"{player_name}, {height} tall and weighting {weight}, plays for {team_name} with the {jersey_number} jersey number."
+                    teams_information[team_name].append(sentence)
+                else:
+                    sentence = f"{player_name}, {height} tall and weighting {weight}, plays for {team_name}."
+                    teams_information[team_name].append(sentence)
+
+            elif height != None:
+                if jersey_number != None:
+                    sentence = f"{player_name}, {height} tall, plays for {team_name} with the {jersey_number} jersey number."
+                    teams_information[team_name].append(sentence)
+                else:
+                    sentence = f"{player_name}, {height} tall, plays for {team_name}."
+                    teams_information[team_name].append(sentence)
+
+            elif weight != None:
+                if jersey_number != None:
+                    sentence = f"{player_name}, weighting {weight}, plays for {team_name} with the {jersey_number} jersey number."
+                    teams_information[team_name].append(sentence)
+                else:
+                    sentence = f"{player_name}, weighting {weight}, plays for {team_name}."
+                    teams_information[team_name].append(sentence)
 
         transfer = player.get('transfer')
         if transfer != None:
@@ -632,8 +702,9 @@ def handle_players(team_name, players):
                 sentence = f"{player_name} has been transfered from {from_team} to {team_name} on {transfer_date} for {amount} euros."
                 teams_information[team_name].append(sentence)
 
-        sentence = f"{player_name}'s contract for {team_name} started in {start} and is valid until {end}."
-        teams_information[team_name].append(sentence)
+        if start != None and end != None:
+            sentence = f"{player_name}'s contract for {team_name} started in {start} and is valid until {end}."
+            teams_information[team_name].append(sentence)
 
         if captain:
             sentence = f"{player_name} is the captain of {team_name}."
