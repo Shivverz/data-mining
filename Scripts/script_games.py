@@ -46,7 +46,8 @@ for jogo in all_documents:
 
 ###events
     if len(jogo['events']) != 0:
-        txt = f'The game {jogo["name"]} of the season {jogo["season"]["name"]} had the following events:\n'
+        base = f'The game {jogo["name"]} of the season {jogo["season"]["name"]} at minute '
+        txt = ''
         for i in range(len(jogo['events'])):
             equipa = jogo["events"][i]["participant_id"]
             if equipa != None:
@@ -59,40 +60,40 @@ for jogo in all_documents:
             if type(equipa) is float or equipa == None:
                 equipa = 'unknown'
             if jogo["events"][i]["type"]["name"] == 'Substitution':
-                txt+= f'\t{jogo["events"][i]["minute"]} min: There was a substitution for team {equipa}. Player {jogo["events"][i]["related_player_name"]} came in, and player {jogo["events"][i]["player_name"]} went out.\n'
+                txt+= base + f'{jogo["events"][i]["minute"]} there was a substitution for team {equipa}. Player {jogo["events"][i]["related_player_name"]} came in, and player {jogo["events"][i]["player_name"]} went out.\n'
             elif jogo["events"][i]["type"]["name"] == 'Goal':
                 if jogo["events"][i]["player_name"] == None:
-                    txt+= f'\t{jogo["events"][i]["minute"]} min: {equipa} scored a goal.\n'
+                    txt+= base + f'{jogo["events"][i]["minute"]}, {equipa} scored a goal.\n'
                 else:
-                    txt+= f'\t{jogo["events"][i]["minute"]} min: {jogo["events"][i]["player_name"]} scored a goal for team {equipa}.\n'
+                    txt+= base +  f'{jogo["events"][i]["minute"]}, {jogo["events"][i]["player_name"]} scored a goal for team {equipa}.\n'
             elif jogo["events"][i]["type"]["name"] == 'Own Goal':
                 if jogo["events"][i]["player_name"] == None:
-                    txt+= f'\t{jogo["events"][i]["minute"]} min: {equipa} scored an own goal.\n'
+                    txt+= base + f'{jogo["events"][i]["minute"]}, {equipa} scored an own goal.\n'
                 else:
-                    txt+= f'\t{jogo["events"][i]["minute"]} min: {jogo["events"][i]["player_name"]} scored an own goal for team {equipa}.\n'
+                    txt+= base + f'{jogo["events"][i]["minute"]}, {jogo["events"][i]["player_name"]} scored an own goal for team {equipa}.\n'
             elif jogo["events"][i]["type"]["name"] == 'Corner':
                 if jogo["events"][i]["player_name"] == None:
-                    txt+= f'\t{jogo["events"][i]["minute"]} min: {equipa} took a corner kick.\n'
+                    txt+= base + f'{jogo["events"][i]["minute"]}, {equipa} took a corner kick.\n'
                 else:
-                    txt+= f'\t{jogo["events"][i]["minute"]} min: {jogo["events"][i]["player_name"]} took a corner kick for team {equipa}.\n'
+                    txt+= base + f'{jogo["events"][i]["minute"]}, {jogo["events"][i]["player_name"]} took a corner kick for team {equipa}.\n'
             elif jogo["events"][i]["type"]["name"] == 'Yellowcard' or jogo["events"][i]["type"]["name"] == 'Yellow/Red card' or jogo["events"][i]["type"]["name"] == 'Redcard':
                 if jogo["events"][i]["player_name"] == None:
-                    txt+= f'\t{jogo["events"][i]["minute"]} min: The {equipa} received {jogo["events"][i]["type"]["name"]}.\n'
+                    txt+= base + f'{jogo["events"][i]["minute"]}, the {equipa} received {jogo["events"][i]["type"]["name"]}.\n'
                 else:
-                    txt+= f'\t{jogo["events"][i]["minute"]} min: The player {jogo["events"][i]["player_name"]} from team {equipa} received {jogo["events"][i]["type"]["name"]}.\n'
+                    txt+= base + f'{jogo["events"][i]["minute"]}, the player {jogo["events"][i]["player_name"]} from team {equipa} received {jogo["events"][i]["type"]["name"]}.\n'
             elif jogo["events"][i]["type"]["name"] == 'Penalty':
                 if jogo["events"][i]["player_name"] == None:
-                    txt+= f'\t{jogo["events"][i]["minute"]} min: {equipa} scored a penalty.\n'
+                    txt+= base + f'{jogo["events"][i]["minute"]}, {equipa} scored a penalty.\n'
                 else:
-                    txt+= f'\t{jogo["events"][i]["minute"]} min: {jogo["events"][i]["player_name"]} scored a penalty for team {equipa}.\n'
+                    txt+= base + f'{jogo["events"][i]["minute"]}, {jogo["events"][i]["player_name"]} scored a penalty for team {equipa}.\n'
             elif jogo["events"][i]["type"]["name"] == 'Missed Penalty':
                 if jogo["events"][i]["player_name"] == None:
-                    txt+= f'\t{jogo["events"][i]["minute"]} min: The {equipa} misses a penalty.\n'
+                    txt+= base + f'{jogo["events"][i]["minute"]}, the {equipa} misses a penalty.\n'
                 else:
-                    txt+= f'\t{jogo["events"][i]["minute"]} min: {jogo["events"][i]["player_name"]} missed a penalty for team {equipa}.\n'
+                    txt+= base + f'{jogo["events"][i]["minute"]}, {jogo["events"][i]["player_name"]} missed a penalty for team {equipa}.\n'
             elif (jogo["events"][i]["type"]["name"] == 'VAR' or jogo["events"][i]["type"]["name"] == 'VAR_CARD'):
                 if jogo["events"][i]["addition"] != None:
-                    txt+= f'\t{jogo["events"][i]["minute"]} min: Var decision "{jogo["events"][i]["addition"]}"({jogo["events"][i]["player_name"]}).\n'
+                    txt+= base + f'{jogo["events"][i]["minute"]}, Var decision "{jogo["events"][i]["addition"]}"({jogo["events"][i]["player_name"]}).\n'
             else:
                 print({jogo["events"][i]["type"]["name"]})
                 print(jogo["events"][i])        
@@ -102,7 +103,8 @@ for jogo in all_documents:
 ###statistics
 ############ainda tenho de formatar os statistics 
     if len(jogo['statistics']) != 0:
-        txt = f'The game {jogo["name"]} of the season {jogo["season"]["name"]} had the following statistics:\n'
+        base = f'In game {jogo["name"]} of the season {jogo["season"]["name"]} '
+        txt = ''
         for i in range(len(jogo['statistics'])):
             equipa = jogo["statistics"][i]["participant_id"]
             if len(jogo['participants'])==2:
@@ -110,7 +112,7 @@ for jogo in all_documents:
                     equipa = jogo['participants'][0]['name']
                 else:
                     equipa = jogo['participants'][1]['name']
-            txt+= f'\t{equipa} have {jogo["statistics"][i]["data"]["value"]} {jogo["statistics"][i]["type"]["name"]}\n'
+            txt+= base + f'{equipa} have {jogo["statistics"][i]["data"]["value"]} {jogo["statistics"][i]["type"]["name"]}\n'
         with open(f"statistics.txt", 'a', encoding='utf-8') as arquivo:
             arquivo.write(txt)
 
