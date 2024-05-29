@@ -1,50 +1,68 @@
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from documents_load import process_docs
+from langchain_community.document_loaders import PyPDFLoader
+from langchain.prompts import PromptTemplate
 from langchain_community.embeddings import OllamaEmbeddings
-from langchain_community.vectorstores import Chroma
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.vectorstores import DocArrayInMemorySearch
+from langchain.chains import ConversationalRetrievalChain
 from langchain_community.llms import Ollama
+from langchain.memory import ConversationBufferMemory
+from langchain_community.vectorstores import Chroma
+from langchain.chains import RetrievalQA
 
+def load_db(path, model_name, files, chain_type, k):
+    #documents = []
+#
+    #for file in files:
+    #    loader = PyPDFLoader(path + file)
+    #    documents.extend(loader.load())
+#
+    #text_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=200)
+    #docs = text_splitter.split_documents(documents)
+    embeddings = OllamaEmbeddings(model=model_name)
 
-from llm import getChatChain
+    # TODO: Mudar isto para uma função à parte no futuro
+    #vectordb = Chroma.from_documents(
+    #                documents=docs,
+    #                embedding=embeddings,
+    #                persist_directory='docs/chroma/',
+    #           )
+    #db = DocArrayInMemorySearch.from_documents(docs, embeddings)  # Using DocArrayInMemorySearch
 
-# Configuração do divisor de texto
-SPLITTER = RecursiveCharacterTextSplitter(chunk_size=400, chunk_overlap=100)
+    #memory = ConversationBufferMemory(
+    #    memory_key="chat_history",
+    #    return_messages=True
+    #)
 
-def load_docs_db(model, path) -> Chroma:
-    try:
-        # Processa os documentos a partir do caminho fornecido
-        preprocessed_docs = process_docs(path)
-        # Divide os documentos em partes menores
-        docs = SPLITTER.split_documents(preprocessed_docs)
-        
-        # Cria embeddings dos documentos
-        embeddings = OllamaEmbeddings(model=model)
-        # Inicializa o banco de dados vetorial Chroma com persistência
-        db = Chroma(persist_directory="../Files_DB", embedding_function=embeddings)
-        
-        return db
-    except FileNotFoundError as e:
-        print(f"Erro: Arquivo não encontrado - {e}")
-        raise
+    db = Chroma(persist_directory='docs/chroma/', embedding_function=embeddings)
+    retriever = db.as_retriever(search_type="similarity")
+
+    template = """Use the following pieces of context to answer the question at the end. If you don't know the answer, just say that you don't know, don't try to make up an answer.
+                       You're an expert on Portuguese football, specifically the Primeira Liga. Your goal is to provide insightful, accurate, and up-to-date information about teams, players, matches, and statistics. 
+                       Answer questions, offer analysis, and engage in discussions with users who want to know more about the league.
+
+                       {context}
+                       Question: {question}
+                       Helpful Answer:"""
+
+    QA_CHAIN_PROMPT = PromptTemplate(input_variables=["context", "question"], template=template)
+
+    qa = RetrievalQA.from_chain_type(
+                llm = Ollama(model=model_name, temperature=0),
+                retriever=retriever,
+                return_source_documents=True,
+                chain_type_kwargs={"prompt": QA_CHAIN_PROMPT}
+                )
+
+    return qa
 
 def main(modeln, path):
-    try:
-        db = load_docs_db(modeln, path)
-    except FileNotFoundError as f:
-        print(f)
-        return
-
-    llm = Ollama(model=modeln)
-    conv = getChatChain(llm, db)
+    files = ["champion.pdf", "standings.pdf", "pt_cup_winners.pdf"]
+    qa = load_db(path, modeln, files, "map_rerank", 3)
 
     while True:
-        try:
-            input_us = input("\nType Your Question to FootballPro. Type 'quit' to exit: ")
-            if input_us.lower() == "quit":
-                break
-            response = conv(input_us)  # Aqui chamamos a função retornada por getChatChain
-        except KeyboardInterrupt:
-            break
+        question = input("Question:")
+        result = qa.invoke({"query": question.strip()})
+        print("Answer: ", result['result'])
 
 if __name__ == "__main__":
-    main("mistral", "/home/jbtescudeiro16/4ANO2SEM/DataMining/Final_FIles")
+    main("mistral", "./Final_FIles/")
