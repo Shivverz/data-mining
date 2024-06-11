@@ -1,6 +1,13 @@
 # data-mining
 Este repositório contém o material relativo à construção do trabalho prático da unidade curricular de Data Mining, inserida no primeiro ano do Mestrado em Engenharia Informática.
 
+Realizado por :
+  - **Alexandre Fernandes- PG53606**
+  - **Henrique Fernandes- A95323**
+  - **Hugo Martins- A95125**
+  - **João Escudeiro- A96075**
+
+
 ## Conteúdo do repositório
   1. **Files** - Contém os ficheiros txt criados com a informação sobre o campeonato.
   2. **Final_Files** - Contém os ficheiros pdf criados a partir dos ficheiros txt.
@@ -60,8 +67,15 @@ Como resultado deste tratamento obtivemos os seguintes ficheiros:
 
 ## Modo de Funcionamento
 
+![Modo de Trabalho](https://github.com/Shivverz/data-mining/raw/main/imgs/WorkMode.png)
+
+
 
 ## Trabalho futuro
-
+Como possíveis melhorias ao nosso trabalho no futuro temos:
+  - Integração de dados de outras fontes, de modo a tornar o LLM mais robusto.
+  - Integração de histórico na interface.
+  - Atualização de dados automática.
+  - Integração de pedidos automáticos à plataforma, mediante a query, ao invés de manter os dados armazenados localmente.
 
 Link Para apresentação: https://www.canva.com/design/DAGBRTKA3yA/iDEKjXOwCy31-Iw2Wih_3g/edit?utm_content=DAGBRTKA3yA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
