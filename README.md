@@ -58,5 +58,10 @@ Como resultado deste tratamento obtivemos os seguintes ficheiros:
   - "Marcos Leonardo Santos Almeida, 177.0 tall, is a centre forward for Benfica with the 36 jersey number."
 
 
+## Modo de Funcionamento
+
+
+## Trabalho futuro
+
 
 Link Para apresentação: https://www.canva.com/design/DAGBRTKA3yA/iDEKjXOwCy31-Iw2Wih_3g/edit?utm_content=DAGBRTKA3yA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
