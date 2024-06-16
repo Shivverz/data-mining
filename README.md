@@ -19,6 +19,8 @@ Realizado por :
   8. **documents.py**- Ficheiro auxiliar para o processamento dos documentos.
   9. **documents_load.py**-Ficheiro auxiliar para o load dos documentos.
   10. **main.py**- Código utilizado para a construção da LLM.
+  11. **DataMining_Relatorio.pdf**- Contém o relatório da elaboração do FutProBot, que contém a explicação passo a passo de todas as etapas realizadas até chegar ao produto final.
+
 
 ## Objetivos do trabalho prático
 Foi-nos proposto a especialização de uma LLM à nossa escolha, num tema do nosso interesse. Assim, e tendo em conta que é um tema que é do nosso interesse, decidimos avançar para a implementação do **FutProBot**, um chat que será especializado em fornecer  comentários com base em estatísticas, classificações, resultados, lineups e a forma recente das equipas. Sempre que for questionado sobre uma equipa, ele será capaz de fornecer estatísticas relevantes, bem como classificações das  ́ultimas temporadas.
