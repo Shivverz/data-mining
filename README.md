@@ -19,7 +19,7 @@ Realizado por :
   8. **documents.py**- Ficheiro auxiliar para o processamento dos documentos.
   9. **documents_load.py**-Ficheiro auxiliar para o load dos documentos.
   10. **main.py**- Código utilizado para a construção da LLM.
-  11. **DataMining_Relatorio.pdf**- Contém o relatório da elaboração do FutProBot, que contém a explicação passo a passo de todas as etapas realizadas até chegar ao produto final.
+  11. **artigofinal_grupo4.pdf**- Contém o relatório da elaboração do FutProBot, que contém a explicação passo a passo de todas as etapas realizadas até chegar ao produto final.
   12. **/imgs**- Imagens utilizadas para a elaboração do ReadMe
 
 
