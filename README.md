@@ -68,6 +68,15 @@ Como resultado deste tratamento obtivemos os seguintes ficheiros:
 
 
 ## Modo de Funcionamento
+As etapas ultrapassadas para a realização do chat foram:
+1. **Carregamento dos Ficheiros de Dados**
+2. **Configuração do Divisor do Texto**
+3. **Criação dos Embeddings**
+4. **Armazenamento dos Ficheiros numa Base de Dados Vetorial**
+5. **Integração com o Modelo**
+6. **Criação do FrontEnd**
+
+Na figura abaixo é apresentado de uma forma simplificada o modo de funcionamento do chat.
 
 ![Modo de Trabalho](https://github.com/Shivverz/data-mining/raw/main/imgs/WorkMode.png)
 
