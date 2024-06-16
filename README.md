@@ -72,15 +72,7 @@ Como resultado deste tratamento obtivemos os seguintes ficheiros:
 ### Exemplo prático com perguntas
 Na figura abaixo está representado o front-end desenvolvido, incorporado com as respostas do ChatBot. 
 ![FrontEnd](https://github.com/Shivverz/data-mining/blob/main/imgs/frontend.png)
-## Análise de performance 
 
-| Pergunta | Resp Obtida | Resp Esperada | Accuracy |
-|----------|----------|----------|----------|
-| Linha 1  | Dados    | Dados    | Dados    |
-| Linha 2  | Dados    | Dados    | Dados    |
-| Linha 3  | Dados    | Dados    | Dados    |
-| Linha 4  | Dados    | Dados    | Dados    |
-| Linha 5  | Dados    | Dados    | Dados    |
 
 
 ## Trabalho futuro
