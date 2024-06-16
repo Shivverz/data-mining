@@ -69,6 +69,15 @@ Como resultado deste tratamento obtivemos os seguintes ficheiros:
 
 ![Modo de Trabalho](https://github.com/Shivverz/data-mining/raw/main/imgs/WorkMode.png)
 
+## Análise de performance 
+
+| Pergunta | Resp Obtida | Resp Esperada | Accuracy |
+|----------|----------|----------|----------|
+| Linha 1  | Dados    | Dados    | Dados    |
+| Linha 2  | Dados    | Dados    | Dados    |
+| Linha 3  | Dados    | Dados    | Dados    |
+| Linha 4  | Dados    | Dados    | Dados    |
+| Linha 5  | Dados    | Dados    | Dados    |
 
 
 ## Trabalho futuro
