@@ -69,6 +69,9 @@ Como resultado deste tratamento obtivemos os seguintes ficheiros:
 
 ![Modo de Trabalho](https://github.com/Shivverz/data-mining/raw/main/imgs/WorkMode.png)
 
+### Exemplo prático com perguntas
+Na figura abaixo está representado o front-end desenvolvido, incorporado com as respostas do ChatBot. 
+![FrontEnd]([https://github.com/Shivverz/data-mining/raw/main/imgs/WorkMode.png](https://github.com/Shivverz/data-mining/blob/main/imgs/frontend.png))
 ## Análise de performance 
 
 | Pergunta | Resp Obtida | Resp Esperada | Accuracy |
