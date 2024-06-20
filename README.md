@@ -2,10 +2,10 @@
 Este repositório contém o material relativo à construção do trabalho prático da unidade curricular de Data Mining, inserida no primeiro ano do Mestrado em Engenharia Informática.
 
 Realizado por :
-  - **Alexandre Fernandes- PG53606**
-  - **Henrique Fernandes- A95323**
-  - **Hugo Martins- A95125**
-  - **João Escudeiro- A96075**
+  - **Alexandre Rodrigues Fernandes- PG53606**
+  - **Henrique Ribeiro Fernandes- A95323**
+  - **Hugo dos Santos Martins- A95125**
+  - **João Bernardo Teixeira Escudeiro- A96075**
 
 
 ## Conteúdo do repositório
